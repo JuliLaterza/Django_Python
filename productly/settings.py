@@ -12,6 +12,16 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 
 import os
 from pathlib import Path
+from django.forms.renderers import TemplatesSetting
+
+class CustomFormRenderer(TemplatesSetting): #Esta clase es dependiente de django.forms
+    form_template_name = 'form_snippet.html' # Aca se especifica cual es el archivo HTML donde DJANGO no tiene control de renderizado.
+
+FORM_RENDERER = "productly.settings.CustomFormRenderer" #Reemplazar el renderizado de los formularios por uno personalizado. Por convención se necesita
+#Esta variable de FORM RENDERER.  Dentro de la misma se ingresa la ruta. "carpeta_principal.settings.CustomFormRenderer" SUPER IMPORTANTE
+
+
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -38,6 +48,7 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    "django.forms",
     'productos.apps.ProductosConfig',
 ]
 

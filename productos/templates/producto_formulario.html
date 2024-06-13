@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+
+
+{% block content %}
+
+<form
+    action= "{% url 'producto:formulario' %}"
+    method='post'>
+
+    {% csrf_token %} <!-- Es muy importante el csrf_token para evitar hackeos.-->
+    {{ form }}
+    <input type="submit" value ="Enviar">
+</form>
+
+
+{% endblock %}
